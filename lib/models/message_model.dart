@@ -10,11 +10,11 @@ class Message {
 
   Message({
     required this.sender,
-    this.avatar='',
+    this.avatar = '',
     required this.time,
-    this.unreadCount=0,
+    this.unreadCount = 0,
     required this.text,
-    this.isRead=true,
+    this.isRead = true,
   });
 }
 
@@ -46,7 +46,7 @@ final List<Message> recentChats = [
       time: '12:45',
       text: "Let me see what I can do.",
       unreadCount: 2),
-      Message(
+  Message(
     sender: deanna,
     avatar: 'assets/images/Deanna.jpg',
     time: '05:26',
@@ -59,7 +59,7 @@ final List<Message> recentChats = [
       time: '12:45',
       text: "Let me see what I can do.",
       unreadCount: 2),
-      Message(
+  Message(
     sender: deanna,
     avatar: 'assets/images/Deanna.jpg',
     time: '05:26',
@@ -72,7 +72,7 @@ final List<Message> recentChats = [
       time: '12:45',
       text: "Let me see what I can do.",
       unreadCount: 2),
-      Message(
+  Message(
     sender: deanna,
     avatar: 'assets/images/Deanna.jpg',
     time: '05:26',
@@ -85,7 +85,7 @@ final List<Message> recentChats = [
       time: '12:45',
       text: "Let me see what I can do.",
       unreadCount: 2),
-      Message(
+  Message(
     sender: deanna,
     avatar: 'assets/images/Deanna.jpg',
     time: '05:26',
@@ -136,6 +136,30 @@ final List<Message> allChats = [
 ];
 
 final List<Message> messages = [
+  Message(
+    sender: addison,
+    time: '12:09 AM',
+    avatar: addison.avatar,
+    text: "...",
+  ),
+  Message(
+    sender: currentUser,
+    time: '12:05 AM',
+    isRead: true,
+    text: "I’m going home.",
+  ),
+  Message(
+    sender: addison,
+    time: '12:09 AM',
+    avatar: addison.avatar,
+    text: "...",
+  ),
+  Message(
+    sender: currentUser,
+    time: '12:05 AM',
+    isRead: true,
+    text: "I’m going home.",
+  ),
   Message(
     sender: addison,
     time: '12:09 AM',

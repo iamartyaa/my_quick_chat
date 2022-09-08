@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_chat/screens/chat/chat_room.dart';
 
 import '../../../app_theme.dart';
 import '../../../models/message_model.dart';
@@ -55,21 +56,34 @@ class Chats extends StatelessWidget {
                     const SizedBox(
                       width: 20,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          recentChat.sender.name,
-                          style: MyTheme.heading2.copyWith(
-                            fontSize: 16,
+                    GestureDetector(
+                      onTap: () {
+                        // Navigator.of(context).pushNamed(ChatRoom.routeName,arguments: recentChat.sender);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ChatRoom(user: recentChat.sender);
+                            },
                           ),
-                        ),
-                        Text(
-                          recentChat.text,
-                          style: MyTheme.bodyText1,
-                        ),
-                      ],
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            recentChat.sender.name,
+                            style: MyTheme.heading2.copyWith(
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            recentChat.text,
+                            style: MyTheme.bodyText1,
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Column(

@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_chat/app_theme.dart';
+import 'package:quick_chat/screens/chat/chat_room.dart';
 import 'package:quick_chat/screens/home/home_screen.dart';
 
 import 'constants.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         SignUpScreen.routeName: (context) => const SignUpScreen(),
         HomeScreen.routeName:(context) => const HomeScreen(),
         DropScreen.routeName: (context) => const DropScreen(),
+        // ChatRoom.routeName:(context) => const ChatRoom(),
       },
     );
   }
