@@ -49,6 +49,10 @@ class _BodyState extends State<Body> {
           .set({
         'username': username,
         'email': email,
+        'location': 'Not Available',
+        'about': 'Can\'t talk, QuickChat only!',
+        'college': 'Harcourt Butler Technical University, Kanpur',
+        'major': 'Not Available',
         'friends': 0,
       });
       setState(() {
