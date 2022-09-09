@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_chat/screens/login/login-screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  static const routeName =  '/profile';
+  static const routeName = '/profile';
   const ProfileScreen({super.key});
 
   @override
@@ -11,6 +13,18 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: TextButton(
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut().then(
+                  (value) => Navigator.of(context)
+                      .popAndPushNamed(LoginScreen.routeName),
+                );
+          },
+          child: Text('Log out'),
+        ),
+      ),
+    );
   }
 }

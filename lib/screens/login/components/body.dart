@@ -30,7 +30,6 @@ class _BodyState extends State<Body> {
     String email,
     String password,
   ) async {
-    
     UserCredential authResult;
     try {
       setState(() {
@@ -43,7 +42,7 @@ class _BodyState extends State<Body> {
       setState(() {
         _isLoading = false;
       });
-      Navigator.of(context).popAndPushNamed(HomeScreen.routeName);
+      // Navigator.of(context).popAndPushNamed(HomeScreen.routeName);
     } on PlatformException catch (err) {
       var message = 'An error occured, please check your credentials';
 
@@ -51,13 +50,13 @@ class _BodyState extends State<Body> {
         message = err.message!;
       }
       print('failed');
-      print(email+' '+password);
+      print(email + ' ' + password);
 
       setState(() {
         _isLoading = false;
       });
     } catch (err) {
-      print(err.toString()+'Amartya');
+      print(err.toString() + 'Amartya');
       setState(() {
         _isLoading = false;
       });
