@@ -51,19 +51,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         centerTitle: false,
         elevation: 0,
         backgroundColor: kkPrimaryColor,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: const Icon(Icons.menu),
+        // ),
         title: Text(
           'QuickChat',
           style: MyTheme.kAppTitle,
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              
+            },
             icon: const Icon(
-              Icons.camera_alt_sharp,
+              Icons.settings,
+              size: 28,
             ),
           ),
           // IconButton(onPressed: (){}, icon: Icon(Icons.),),
@@ -90,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 children: [
                   Chats(kkPrimaryColor: kkPrimaryColor),
                   const Center(child: Text('Status')),
-                  const Center(child: Text('Call')),
+                  const Center(child: Text('Find Friends')),
                 ],
               ),
             ),
@@ -108,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ? Icons.message_outlined
               : currentTabIndex == 1
                   ? Icons.camera_alt_rounded
-                  : Icons.call,
+                  : Icons.search_sharp,
           color: Colors.white,
         ),
       ),

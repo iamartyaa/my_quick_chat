@@ -46,7 +46,7 @@ class Chats extends StatelessWidget {
             itemBuilder: (context, index) {
               final recentChat = recentChats[index];
               return Container(
-                margin: const EdgeInsets.only(top: 15),
+                margin: const EdgeInsets.only(top: 10,bottom: 10),
                 child: Row(
                   children: [
                     CircleAvatar(

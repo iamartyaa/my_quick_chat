@@ -44,7 +44,7 @@ class MyTabBar extends StatelessWidget {
           ),
           Tab(
             icon: Text(
-              'CALL',
+              'FIND',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

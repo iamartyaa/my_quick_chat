@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_chat/app_theme.dart';
 import 'package:quick_chat/screens/chat/chat_room.dart';
 import 'package:quick_chat/screens/home/home_screen.dart';
+import 'package:quick_chat/screens/profile/profile_screen.dart';
 
 import 'constants.dart';
 import 'screens/drop/drop_screen.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         SignUpScreen.routeName: (context) => const SignUpScreen(),
         HomeScreen.routeName:(context) => const HomeScreen(),
         DropScreen.routeName: (context) => const DropScreen(),
+        ProfileScreen.routeName:(context) => const ProfileScreen(),
         // ChatRoom.routeName:(context) => const ChatRoom(),
       },
     );
