@@ -17,10 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Center(
         child: TextButton(
           onPressed: () async {
-            await FirebaseAuth.instance.signOut().then(
-                  (value) => Navigator.of(context)
-                      .popAndPushNamed(LoginScreen.routeName),
-                );
+            await FirebaseAuth.instance.signOut();
           },
           child: Text('Log out'),
         ),

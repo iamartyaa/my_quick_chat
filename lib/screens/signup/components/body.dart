@@ -196,7 +196,7 @@ class _BodyState extends State<Body> {
                 login: false,
                 press: () {
                   Navigator.of(context)
-                      .pushReplacementNamed(LoginScreen.routeName);
+                      .popAndPushNamed(LoginScreen.routeName);
                 },
               ),
               const OrDivider(),
