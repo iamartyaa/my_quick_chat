@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quick_chat/app_theme.dart';
 import 'package:quick_chat/models/message_model.dart';
+import 'package:quick_chat/screens/home/components/search.dart';
 import 'package:quick_chat/screens/profile/profile_screen.dart';
 import 'components/chats.dart';
 import 'components/my_tab_bar.dart';
@@ -93,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 controller: tabController,
                 children: [
                   Chats(kkPrimaryColor: kkPrimaryColor),
-                  const Center(child: Text('Status')),
-                  const Center(child: Text('Find Friends')),
+                  const Center(child: Text('Feature Coming Soon')),
+                  SearchFriends(),
                 ],
               ),
             ),

@@ -53,7 +53,7 @@ class _BodyState extends State<Body> {
         'about': 'Can\'t talk, QuickChat only!',
         'college': 'Harcourt Butler Technical University, Kanpur',
         'major': 'Not Available',
-        'friends': 0,
+        
       });
       setState(() {
         _isLoading = false;
