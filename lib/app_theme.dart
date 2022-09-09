@@ -25,6 +25,13 @@ class MyTheme {
     letterSpacing: 1.5,
   );
 
+  static final TextStyle fieldTitle = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.5,
+  );
+
   static final TextStyle bodyText1 = TextStyle(
       color: Color(0xffAEABC9),
       fontSize: 14,
