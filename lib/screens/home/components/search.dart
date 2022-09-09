@@ -18,7 +18,9 @@ class _SearchFriendsState extends State<SearchFriends> {
   String name = '';
   String myName = '';
   bool random = false;
+
   final auth = FirebaseAuth.instance;
+
   final friends = [];
 
   @override
@@ -50,12 +52,9 @@ class _SearchFriendsState extends State<SearchFriends> {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance
-        .collection('${auth.currentUser!.uid}\friends');
-
     Future<void> addUser(String id, String fname) {
-      // Call the user's CollectionReference to add a new user
-
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('${auth.currentUser!.uid}');
       return users
           .add({
             'friend_id': id,
@@ -143,15 +142,16 @@ class _SearchFriendsState extends State<SearchFriends> {
                                   data['major'] + ' at ' + data['college']),
                               trailing: IconButton(
                                 onPressed: () {
-                                  !friends.contains(data['username']) ?
-                                  addUser(data.id, data['username']): null;
-                                  if(!friends.contains(data['username'])) {
+                                  !friends.contains(data['username'])
+                                      ? addUser(data.id, data['username'])
+                                      : null;
+                                  if (!friends.contains(data['username'])) {
                                     setState(() {
-                                    friends.add(data['username']);
-                                  });
+                                      friends.add(data['username']);
+                                    });
                                   }
                                 },
-                                icon: !friends.contains(data['username']) 
+                                icon: !friends.contains(data['username'])
                                     ? const Icon(Icons.person_add)
                                     : const Icon(Icons.done_sharp),
                               ),
