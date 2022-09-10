@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+                horizontal: 10,
               ),
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: TabBarView(
                 controller: tabController,
                 children: [
-                  Chats(kkPrimaryColor: kkPrimaryColor),
+                  Chats(),
                   const Center(child: Text('Feature Coming Soon')),
                   SearchFriends(),
                 ],
