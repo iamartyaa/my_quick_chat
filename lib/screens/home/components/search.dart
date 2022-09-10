@@ -30,8 +30,16 @@ class _SearchFriendsState extends State<SearchFriends> {
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .get();
 
-  Future<void> addFriend(String id, String name) {
+  Future<void> addFriend(String id, String name, String myName) {
     friends.add(name);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .collection('friends')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
+      'friendName': myName,
+    });
     return FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -182,7 +190,8 @@ class _SearchFriendsState extends State<SearchFriends> {
                                       data['major'] + ' at ' + data['college']),
                                   trailing: IconButton(
                                     onPressed: () {
-                                      addFriend(data.id, data['username']);
+                                      addFriend(data.id, data['username'],
+                                          myUser['username']);
                                       setState(() {});
                                     },
                                     icon: !friends.contains(data['username'])
