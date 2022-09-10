@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_chat/screens/chat/chat_room.dart';
+import 'package:intl/intl.dart';
 
 import '../../../app_theme.dart';
 
@@ -71,38 +72,59 @@ class Chats extends StatelessWidget {
                     },
                     child: Container(
                       margin: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 28,
-                            backgroundColor: MyTheme.kkAccentColor,
-                            child: const Icon(
-                              Icons.account_circle_sharp,
-                              size: 50,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                data['friendName'],
-                                style: MyTheme.heading2.copyWith(
-                                  fontSize: 16,
+                      child: FutureBuilder(
+                          future: FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(auth.currentUser!.uid)
+                              .collection('friends')
+                              .doc(data.id)
+                              .collection('chat')
+                              .get(),
+                          // .snapshots(),
+                          builder: (context,
+                              AsyncSnapshot<QuerySnapshot> chatSnapshot) {
+                            if (chatSnapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            final chatDocs = chatSnapshot.data!.docs;
+                            return Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 28,
+                                  backgroundColor: MyTheme.kkAccentColor,
+                                  child: const Icon(
+                                    Icons.account_circle_sharp,
+                                    size: 50,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'random recent text',
-                                style: MyTheme.bodyText1,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      data['friendName'],
+                                      style: MyTheme.heading2.copyWith(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      chatDocs[0]['text'] ?? '',
+                                      style: MyTheme.bodyText1,
+                                    ),
+                                  ],
+                                ),
+                                // Text(DateTime.fromMillisecondsSinceEpoch(chatDocs[0]['createdAt'] * 1000).toString()),
+                              ],
+                            );
+                          }),
                     ),
                   );
                 },
