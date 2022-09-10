@@ -18,6 +18,7 @@ class _SearchFriendsState extends State<SearchFriends> {
   bool random = false;
 
   final auth = FirebaseAuth.instance;
+  final friends = [];
 
   final collectionStream = FirebaseFirestore.instance
       .collection('users')
@@ -29,47 +30,57 @@ class _SearchFriendsState extends State<SearchFriends> {
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .get();
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(auth.currentUser!.uid)
-  //       .get()
-  //       .then((DocumentSnapshot documentSnapshot) {
-  //     if (documentSnapshot.exists) {
-  //       setState(() {
-  //         myName = documentSnapshot['username'];
-  //         // print(myName);
-  //       });
-  //     }
-  //   });
+  Future<void> addFriend(String id, String name) {
+    friends.add(name);
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('friends')
+        .doc(id)
+        .set({
+      'friendName': name,
+    });
+  }
 
-  //   FirebaseFirestore.instance
-  //       .collection(auth.currentUser!.uid)
-  //       .get()
-  //       .then((QuerySnapshot querySnapshot) {
-  //     querySnapshot.docs.forEach((doc) {
-  //       friends.add(doc['username']);
-  //     });
-  //   });
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('friends')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        friends.add(doc['friendName']);
+      });
+    });
+
+    // StreamBuilder(
+    //     stream: collectionStream,
+    //     builder:
+    //         (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot3) {
+    //       if (snapshot3.hasError) {
+    //         return Text('Something went wrong');
+    //       }
+
+    //       if (snapshot3.connectionState == ConnectionState.waiting) {
+    //         return Text("Loading");
+    //       }
+
+    //       snapshot3.data!.docs.map((DocumentSnapshot document) {
+    //         Map<String, dynamic> friendsData =
+    //             document.data()! as Map<String, dynamic>;
+    //         addFriend(document.id, friendsData['username']);
+    //         print(friendsData['username']);
+    //       });
+    //       return Text('done');
+    //     });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Future<void> addUser(String id, String fname) {
-    //   CollectionReference users =
-    //       FirebaseFirestore.instance.collection('${auth.currentUser!.uid}');
-    //   return users
-    //       .add({
-    //         'friend_id': id,
-    //         'name': fname,
-    //       })
-    //       .then((value) => print("User Added"))
-    //       .catchError((error) => print("Failed to add user: $error"));
-    // }
-
     return FutureBuilder(
       future: documentStream,
       builder:
@@ -85,7 +96,7 @@ class _SearchFriendsState extends State<SearchFriends> {
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> myUser =
               snapshot.data!.data() as Map<String, dynamic>;
-          
+
           return Column(
             children: [
               Container(
@@ -138,7 +149,8 @@ class _SearchFriendsState extends State<SearchFriends> {
                           .snapshots(),
                   builder: (context, snapshot2) {
                     return (snapshot2.connectionState ==
-                            ConnectionState.waiting)
+                                ConnectionState.waiting ||
+                            snapshot.connectionState == ConnectionState.waiting)
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
@@ -149,6 +161,7 @@ class _SearchFriendsState extends State<SearchFriends> {
                             itemBuilder: (context, index) {
                               DocumentSnapshot data =
                                   snapshot2.data!.docs[index];
+
                               return Card(
                                 elevation: 0,
                                 child: ListTile(
@@ -165,25 +178,16 @@ class _SearchFriendsState extends State<SearchFriends> {
                                     style: MyTheme.fieldTitle
                                         .copyWith(fontSize: 16),
                                   ),
-                                  subtitle: Text(data['major'] +
-                                      ' at ' +
-                                      data['college']),
+                                  subtitle: Text(
+                                      data['major'] + ' at ' + data['college']),
                                   trailing: IconButton(
                                     onPressed: () {
-                                      // !friends.contains(data['username'])
-                                      //     ? addUser(data.id, data['username'])
-                                      //     : null;
-                                      // if (!friends.contains(data['username'])) {
-                                      //   setState(() {
-                                      //     friends.add(data['username']);
-                                      //   });
-                                      // }
+                                      addFriend(data.id, data['username']);
+                                      setState(() {});
                                     },
-                                    icon: 
-                                    // !friends.contains(data['username'])
-                                        // ? 
-                                        const Icon(Icons.person_add),
-                                        // : const Icon(Icons.done_sharp),
+                                    icon: !friends.contains(data['username'])
+                                        ? const Icon(Icons.person_add)
+                                        : const Icon(Icons.done_sharp),
                                   ),
                                 ),
                               );
@@ -196,7 +200,7 @@ class _SearchFriendsState extends State<SearchFriends> {
           );
         }
 
-        return const Text('Loading');
+        return Center(child: const CircularProgressIndicator());
       }),
     );
   }
