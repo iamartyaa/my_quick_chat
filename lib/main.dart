@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'QuickChat',
       theme: ThemeData(
-        primaryColor: kPrimaryColor,
+        primaryColor: MyTheme.kkPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
         accentColor: MyTheme.kkAccentColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),

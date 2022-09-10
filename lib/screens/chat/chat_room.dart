@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quick_chat/app_theme.dart';
 import 'package:quick_chat/models/message_model.dart';
 import 'package:quick_chat/screens/chat/components/new_message.dart';
+import 'package:quick_chat/screens/home/home_screen.dart';
 
 class ChatRoom extends StatefulWidget {
   // static const routeName = '/chat-room';
@@ -26,6 +27,14 @@ class _ChatRoomState extends State<ChatRoom> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 75,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+            },
+            icon: const Icon(
+              Icons.arrow_back_sharp,
+              size: 30,
+            )),
         backgroundColor: MyTheme.kkPrimaryColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,

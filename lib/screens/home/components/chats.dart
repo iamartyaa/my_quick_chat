@@ -50,9 +50,17 @@ class Chats extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               }
-              final chatDocs = chatSnapshot.data!.docs;
 
-              return ListView.builder(
+              if (chatSnapshot.connectionState == ConnectionState.done &&
+                  !chatSnapshot.hasData) {
+                return const Center(
+                  child: Text('No Chats yet! Start using QuickChat'),
+                );
+              }
+              final chatDocs = chatSnapshot.data!.docs;
+              // return chatDocs.length ==0 ? Center(child: Text('No Chats yet! Start using QuickChat'),):
+              return
+               ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 // shrinkWrap: true,
                 itemCount: chatDocs.length,
@@ -61,7 +69,7 @@ class Chats extends StatelessWidget {
 
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ChatRoom(
@@ -78,18 +86,23 @@ class Chats extends StatelessWidget {
                               .doc(auth.currentUser!.uid)
                               .collection('friends')
                               .doc(data.id)
-                              .collection('chat')
+                              .collection('chat').orderBy('createdAt', descending: true)
                               .get(),
                           // .snapshots(),
                           builder: (context,
-                              AsyncSnapshot<QuerySnapshot> chatSnapshot) {
-                            if (chatSnapshot.connectionState ==
+                              AsyncSnapshot<QuerySnapshot> chatSnapshot1) {
+                            if (chatSnapshot1.connectionState ==
                                 ConnectionState.waiting) {
                               return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             }
-                            final chatDocs = chatSnapshot.data!.docs;
+                            
+                            final chatDocs = chatSnapshot1.data!.docs;
+
+                            if(chatDocs.isEmpty) {
+                              return const Center(child: Text('No Chats yet!'));
+                            }
                             return Row(
                               children: [
                                 CircleAvatar(
