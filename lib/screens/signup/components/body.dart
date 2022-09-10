@@ -52,7 +52,7 @@ class _BodyState extends State<Body> {
         'location': 'Not Available',
         'about': 'Can\'t talk, QuickChat only!',
         'college': 'Harcourt Butler Technical University, Kanpur',
-        'major': 'Not Available',
+        'major': 'Information Technology',
         
       });
       setState(() {
