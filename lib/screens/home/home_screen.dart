@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quick_chat/app_theme.dart';
-import 'package:quick_chat/models/message_model.dart';
 import 'package:quick_chat/screens/home/components/search.dart';
 import 'package:quick_chat/screens/profile/profile_screen.dart';
 import 'package:quick_chat/screens/select/select_contact_screen.dart';
