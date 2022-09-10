@@ -13,7 +13,7 @@ class DropScreen extends StatelessWidget {
         onPressed: () {
           FirebaseAuth.instance.signOut();
         },
-        child: Text('Log Out'),
+        child: Text('Drop Screen'),
       )),
     );
   }

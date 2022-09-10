@@ -24,29 +24,35 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, userSnapshot) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'QuickChat',
-          theme: ThemeData(
-            primaryColor: kPrimaryColor,
-            scaffoldBackgroundColor: Colors.white,
-            accentColor: MyTheme.kkAccentColor,
-            textTheme:
-                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-          ),
-          home: userSnapshot.hasData ? HomeScreen() : LoginScreen(),
-          routes: {
-            LoginScreen.routeName: (context) => const LoginScreen(),
-            SignUpScreen.routeName: (context) => const SignUpScreen(),
-            HomeScreen.routeName: (context) => const HomeScreen(),
-            DropScreen.routeName: (context) => const DropScreen(),
-            ProfileScreen.routeName: (context) => const ProfileScreen(),
-            // ChatRoom.routeName:(context) => const ChatRoom(),
-          },
-        );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'QuickChat',
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+        accentColor: MyTheme.kkAccentColor,
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+      ),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, userSnapshot) {
+          if (userSnapshot.connectionState == ConnectionState.waiting) {
+            return const DropScreen();
+          }
+          if (userSnapshot.hasData) {
+            return const HomeScreen();
+          } else {
+            return const LoginScreen();
+          }
+        },
+      ),
+      routes: {
+        LoginScreen.routeName: (context) => const LoginScreen(),
+        SignUpScreen.routeName: (context) => const SignUpScreen(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        DropScreen.routeName: (context) => const DropScreen(),
+        ProfileScreen.routeName: (context) => const ProfileScreen(),
+        // ChatRoom.routeName:(context) => const ChatRoom(),
       },
     );
   }
