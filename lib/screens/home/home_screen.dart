@@ -3,6 +3,7 @@ import 'package:quick_chat/app_theme.dart';
 import 'package:quick_chat/models/message_model.dart';
 import 'package:quick_chat/screens/home/components/search.dart';
 import 'package:quick_chat/screens/profile/profile_screen.dart';
+import 'package:quick_chat/screens/select/select_contact_screen.dart';
 import 'components/chats.dart';
 import 'components/my_tab_bar.dart';
 
@@ -107,7 +108,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        onPressed: () {},
+        onPressed: () {
+          if(currentTabIndex ==0 ){
+            Navigator.of(context).pushNamed(SelectContactScreen.routeName);
+          }
+        },
         child: Icon(
           currentTabIndex == 0
               ? Icons.message_outlined

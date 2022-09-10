@@ -13,7 +13,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final name = FirebaseFirestore.instance.collection('users').doc('uid').get();
+  // final name = FirebaseFirestore.instance.collection('users').doc('uid').get();
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
