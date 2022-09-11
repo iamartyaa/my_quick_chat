@@ -25,7 +25,7 @@ class _BodyState extends State<Body> {
   var _isLoading = false;
   var userEmail = '';
   var userPassword = '';
-
+  bool isObs = true;
   void submitAuthForm(
     String email,
     String password,
@@ -54,14 +54,11 @@ class _BodyState extends State<Body> {
       if (err.message != null) {
         message = err.message!;
       }
-      print('failed');
-      print(email + ' ' + password);
 
       setState(() {
         _isLoading = false;
       });
     } catch (err) {
-      print(err.toString() + 'Amartya');
       setState(() {
         _isLoading = false;
       });
@@ -74,7 +71,6 @@ class _BodyState extends State<Body> {
 
     if (isValid) {
       _formKey.currentState!.save();
-      print(userPassword);
     }
 
     submitAuthForm(
@@ -82,7 +78,6 @@ class _BodyState extends State<Body> {
       userPassword.toString().trim(),
     );
     
-    //once validated we can send to firebase
   }
 
   @override
@@ -111,7 +106,7 @@ class _BodyState extends State<Body> {
                       Icons.person,
                       color: kPrimaryColor,
                     ),
-                    labelText: 'Your Email',
+                    hintText: 'Your Email',
                     border: InputBorder.none,
                   ),
                   validator: (value) {
@@ -129,16 +124,21 @@ class _BodyState extends State<Body> {
                 child: TextFormField(
                   key: const ValueKey('password'),
                   keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    icon: Icon(
+                  obscureText: isObs,
+                  decoration:  InputDecoration(
+                    icon: const Icon(
                       Icons.lock,
                       color: kPrimaryColor,
                     ),
-                    labelText: 'Password',
+                    hintText: 'Password',
                     border: InputBorder.none,
-                    suffixIcon: Icon(
-                      Icons.visibility,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isObs!=isObs;
+                        });
+                      },
+                      icon: const Icon(Icons.visibility),
                       color: kPrimaryColor,
                     ),
                   ),

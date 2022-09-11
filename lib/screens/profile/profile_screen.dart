@@ -68,21 +68,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
     await updateUser(about, college, major, location);
     
-    // aboutController.clear();
-    // collegeController.clear();
-    // majorController.clear();
-    // locationController.clear();
+    aboutController.clear();
+    collegeController.clear();
+    majorController.clear();
+    locationController.clear();
   }
 
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   aboutController.dispose();
-  //   collegeController.dispose();
-  //   majorController.dispose();
-  //   locationController.dispose();
-  //   super.dispose();
-  // }
+  
 
   @override
   Widget build(BuildContext context) {
