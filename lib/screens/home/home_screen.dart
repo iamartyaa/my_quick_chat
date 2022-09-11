@@ -103,7 +103,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      
+      floatingActionButton: currentTabIndex==0 ? FloatingActionButton(
         backgroundColor: MyTheme.kkAccentColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -121,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   : Icons.search_sharp,
           color: Colors.white,
         ),
-      ),
+      ): null,
     );
   }
 }

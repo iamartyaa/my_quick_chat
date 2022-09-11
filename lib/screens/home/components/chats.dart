@@ -64,7 +64,7 @@ class _ChatsState extends State<Chats> {
             builder: (context, AsyncSnapshot<QuerySnapshot> chatSnapshot) {
               if (chatSnapshot.connectionState == ConnectionState.waiting ||
                   isLoading) {
-                return Container();
+                return SizedBox.shrink();
               }
 
               final chatDocs = chatSnapshot.data!.docs;
@@ -129,12 +129,15 @@ class _ChatsState extends State<Chats> {
                             final chatDocs2 = chatSnapshot1.data!.docs;
 
                             if (chatDocs2.isEmpty) {
-                              return Center(
-                                child: Image.asset(
-                                  'assets/images/empty.jpeg',
-                                ),
-                              );
+                              return SizedBox.shrink();
                             }
+                            // if (chatDocs2.isEmpty) {
+                            //   return Center(
+                            //     child: Image.asset(
+                            //       'assets/images/empty.jpeg',
+                            //     ),
+                            //   );
+                            // }
                             return Row(
                               children: [
                                 CircleAvatar(
