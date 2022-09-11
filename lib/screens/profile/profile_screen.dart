@@ -64,6 +64,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Positioned(
+                    top: 50,
+                    left: MediaQuery.of(context).size.width / 2 -85 ,
+                    child: Text('QuickChat',style: MyTheme.heading2.copyWith(
+                      fontSize: 34,
+                      color: Colors.white,
+                    ),),
+                  ),
+                  Positioned(
                     top: 15,
                     child: IconButton(
                         onPressed: () {
