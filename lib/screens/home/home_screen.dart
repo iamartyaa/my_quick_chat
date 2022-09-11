@@ -94,8 +94,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 controller: tabController,
                 children: [
                   Chats(),
-                  const Center(child: Text('Feature Coming Soon')),
-                  SearchFriends(),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 300,
+                        width: 300,
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/hourglass.jpg',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Coming Soon ...',
+                        style: MyTheme.heading2,
+                      ),
+                    ],
+                  ),
+                  const SearchFriends(),
                 ],
               ),
             ),
@@ -108,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           borderRadius: BorderRadius.circular(15),
         ),
         onPressed: () {
-          if(currentTabIndex ==0 ){
+          if (currentTabIndex == 0) {
             Navigator.of(context).pushNamed(SelectContactScreen.routeName);
           }
         },
