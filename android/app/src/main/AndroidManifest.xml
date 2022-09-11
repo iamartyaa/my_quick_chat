@@ -2,7 +2,7 @@
     package="com.example.my_quick_chat">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
-        android:label="my_quick_chat"
+        android:label="QuickChat"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

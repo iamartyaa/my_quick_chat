@@ -90,22 +90,22 @@ class _BodyState extends State<Body> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // SvgPicture.asset(
-              //   'assets/icons/login.svg',
-              //   height: size.height * 0.3,
+              SvgPicture.asset(
+                'assets/icons/login.svg',
+                height: size.height * 0.3,
+              ),
+              // Image.asset(
+              //   'assets/images/quickchat1.gif',
+              //   height: 120,
+              //   width: 120,
               // ),
-              Image.asset(
-                'assets/images/quickchat1.gif',
-                height: 120,
-                width: 120,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Welcome to QuickChat!',
-                style: MyTheme.heading2,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // Text(
+              //   'Welcome to QuickChat!',
+              //   style: MyTheme.heading2,
+              // ),
               SizedBox(
                 height: size.height * 0.03,
               ),
