@@ -25,6 +25,7 @@ class _SearchFriendsState extends State<SearchFriends> {
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection('friends')
       .snapshots();
+
   final documentStream = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -64,26 +65,6 @@ class _SearchFriendsState extends State<SearchFriends> {
       });
     });
 
-    // StreamBuilder(
-    //     stream: collectionStream,
-    //     builder:
-    //         (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot3) {
-    //       if (snapshot3.hasError) {
-    //         return Text('Something went wrong');
-    //       }
-
-    //       if (snapshot3.connectionState == ConnectionState.waiting) {
-    //         return Text("Loading");
-    //       }
-
-    //       snapshot3.data!.docs.map((DocumentSnapshot document) {
-    //         Map<String, dynamic> friendsData =
-    //             document.data()! as Map<String, dynamic>;
-    //         addFriend(document.id, friendsData['username']);
-    //         print(friendsData['username']);
-    //       });
-    //       return Text('done');
-    //     });
     super.initState();
   }
 
@@ -162,7 +143,7 @@ class _SearchFriendsState extends State<SearchFriends> {
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
-                        : ListView.builder(
+                        : snapshot2.data!.docs.isEmpty? Center(child: Image.asset('assets/images/noResult.jpeg'),) :ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             // shrinkWrap: true,
                             itemCount: snapshot2.data!.docs.length,
