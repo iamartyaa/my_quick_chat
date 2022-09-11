@@ -26,6 +26,7 @@ class MyTheme {
   );
 
   static final TextStyle fieldTitle = TextStyle(
+    fontFamily: 'Poppins',
     color: Colors.black,
     fontSize: 18,
     fontWeight: FontWeight.bold,
