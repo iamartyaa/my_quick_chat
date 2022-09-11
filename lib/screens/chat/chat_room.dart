@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_chat/app_theme.dart';
-import 'package:quick_chat/screens/chat/components/new_message.dart';
-import 'package:quick_chat/screens/home/home_screen.dart';
+import '/app_theme.dart';
+import '/screens/chat/components/new_message.dart';
+import '/screens/home/home_screen.dart';
 
 class ChatRoom extends StatefulWidget {
   final String friendID;

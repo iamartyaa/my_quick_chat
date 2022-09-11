@@ -3,16 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_chat/app_theme.dart';
-import 'package:quick_chat/screens/chat/chat_room.dart';
 import 'package:quick_chat/screens/home/home_screen.dart';
 import 'package:quick_chat/screens/profile/profile_screen.dart';
 import 'package:quick_chat/screens/select/select_contact_screen.dart';
 
-import 'constants.dart';
 import 'screens/drop/drop_screen.dart';
 import 'screens/login/login-screen.dart';
 import 'screens/signup/signup_screen.dart';
-import 'screens/welcome/welcome_screen.dart';
 
 Future<void> main() async {
   // FirebaseFirestore.initializeApp();

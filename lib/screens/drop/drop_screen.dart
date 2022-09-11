@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DropScreen extends StatelessWidget {
@@ -11,7 +10,7 @@ class DropScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        Image.asset('assets/images/quickchat.gif'),
+        Image.asset('assets/images/quickchat.jpeg'),
         const Text('Welcome to QuickChat'),
       ],),
     );

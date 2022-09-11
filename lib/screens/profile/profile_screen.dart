@@ -105,13 +105,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Positioned(
                       top: 135,
                       left: MediaQuery.of(context).size.width / 2 - 70,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey[200],
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.white,
                         radius: 70,
-                        child: const Icon(
+                        child: Icon(
                           Icons.account_circle,
                           size: 140,
-                          color: Colors.grey,
+                          color: Color(0xffFCAAAB),
                         ),
                       ),
                     ),
@@ -122,6 +122,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         'QuickChat',
                         style: MyTheme.heading2.copyWith(
                           fontSize: 34,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 90,
+                      left: MediaQuery.of(context).size.width / 2 + 15,
+                      child: Text(
+                        'by Amartya',
+                        style: MyTheme.heading2.copyWith(
+                          fontSize: 18,
                           color: Colors.white,
                         ),
                       ),
@@ -333,7 +344,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
               ],

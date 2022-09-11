@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:quick_chat/app_theme.dart';
 import 'package:quick_chat/main.dart';
 import '../../../components/already_account_check.dart';
 import '../../../components/rounded_button.dart';
@@ -94,18 +93,7 @@ class _BodyState extends State<Body> {
                 'assets/icons/login.svg',
                 height: size.height * 0.3,
               ),
-              // Image.asset(
-              //   'assets/images/quickchat1.gif',
-              //   height: 120,
-              //   width: 120,
-              // ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // Text(
-              //   'Welcome to QuickChat!',
-              //   style: MyTheme.heading2,
-              // ),
+              
               SizedBox(
                 height: size.height * 0.03,
               ),
