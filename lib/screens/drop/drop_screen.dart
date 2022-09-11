@@ -8,13 +8,12 @@ class DropScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: TextButton(
-        onPressed: () {
-          FirebaseAuth.instance.signOut();
-        },
-        child: Text('Drop Screen'),
-      )),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Image.asset('assets/images/quickchat.gif'),
+        const Text('Welcome to QuickChat'),
+      ],),
     );
   }
 }

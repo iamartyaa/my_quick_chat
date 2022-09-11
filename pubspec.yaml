@@ -75,6 +75,7 @@ flutter:
     - assets/images/empty.jpeg
     - assets/images/noResult.jpeg
     - assets/images/hourglass.jpg
+    - assets/images/quickchat1.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

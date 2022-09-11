@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quick_chat/app_theme.dart';
 import 'package:quick_chat/main.dart';
 import '../../../components/already_account_check.dart';
 import '../../../components/rounded_button.dart';
@@ -43,11 +44,11 @@ class _BodyState extends State<Body> {
         _isLoading = false;
       });
       Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const MyApp(),
-      ),
-    );
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MyApp(),
+        ),
+      );
     } on PlatformException catch (err) {
       var message = 'An error occured, please check your credentials';
 
@@ -77,7 +78,6 @@ class _BodyState extends State<Body> {
       userEmail.toString().trim(),
       userPassword.toString().trim(),
     );
-    
   }
 
   @override
@@ -90,9 +90,21 @@ class _BodyState extends State<Body> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                'assets/icons/login.svg',
-                height: size.height * 0.3,
+              // SvgPicture.asset(
+              //   'assets/icons/login.svg',
+              //   height: size.height * 0.3,
+              // ),
+              Image.asset(
+                'assets/images/quickchat1.gif',
+                height: 120,
+                width: 120,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Welcome to QuickChat!',
+                style: MyTheme.heading2,
               ),
               SizedBox(
                 height: size.height * 0.03,
@@ -125,7 +137,7 @@ class _BodyState extends State<Body> {
                   key: const ValueKey('password'),
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: isObs,
-                  decoration:  InputDecoration(
+                  decoration: InputDecoration(
                     icon: const Icon(
                       Icons.lock,
                       color: kPrimaryColor,
@@ -135,7 +147,7 @@ class _BodyState extends State<Body> {
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
-                          isObs!=isObs;
+                          isObs != isObs;
                         });
                       },
                       icon: const Icon(Icons.visibility),
