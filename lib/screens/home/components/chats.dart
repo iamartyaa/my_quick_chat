@@ -6,11 +6,28 @@ import 'package:intl/intl.dart';
 
 import '../../../app_theme.dart';
 
-class Chats extends StatelessWidget {
+class Chats extends StatefulWidget {
+  Chats({super.key});
+
+  @override
+  State<Chats> createState() => _ChatsState();
+}
+
+class _ChatsState extends State<Chats> {
   final Color kkPrimaryColor = MyTheme.kkPrimaryColor;
+  bool isLoading = true;
   final auth = FirebaseAuth.instance;
 
-  Chats({super.key});
+  @override
+  void initState() {
+    // TODO: implement initState
+    Future.delayed(const Duration(milliseconds: 500)).then((value) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +62,22 @@ class Chats extends StatelessWidget {
                 .collection('friends')
                 .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> chatSnapshot) {
-              if (chatSnapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
+              if (chatSnapshot.connectionState == ConnectionState.waiting ||
+                  isLoading) {
+                return Container();
+              }
+
+              final chatDocs = chatSnapshot.data!.docs;
+
+              if (chatDocs.isEmpty) {
+                return Center(
+                  child: Image.asset(
+                    'assets/images/empty.jpeg',
+                  ),
                 );
               }
 
-              if (chatSnapshot.connectionState == ConnectionState.done &&
-                  !chatSnapshot.hasData) {
-                return const Center(
-                  child: Text('No Chats yet! Start using QuickChat'),
-                );
-              }
-              final chatDocs = chatSnapshot.data!.docs;
-              // return chatDocs.length ==0 ? Center(child: Text('No Chats yet! Start using QuickChat'),):
-              return
-               ListView.builder(
+              return ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 // shrinkWrap: true,
                 itemCount: chatDocs.length,
@@ -86,22 +103,37 @@ class Chats extends StatelessWidget {
                               .doc(auth.currentUser!.uid)
                               .collection('friends')
                               .doc(data.id)
-                              .collection('chat').orderBy('createdAt', descending: true)
+                              .collection('chat')
+                              .orderBy('createdAt', descending: true)
                               .get(),
-                          // .snapshots(),
                           builder: (context,
                               AsyncSnapshot<QuerySnapshot> chatSnapshot1) {
                             if (chatSnapshot1.connectionState ==
                                 ConnectionState.waiting) {
-                              return const Center(
-                                child: Text('Loading ...'),
+                              return Container(
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    return const ChatsSkeleton();
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return const SizedBox(
+                                      height: 10,
+                                    );
+                                  },
+                                  itemCount: 10,
+                                ),
                               );
                             }
-                            
-                            final chatDocs = chatSnapshot1.data!.docs;
 
-                            if(chatDocs.isEmpty) {
-                              return const Center(child: Text('No Chats yet!'));
+                            final chatDocs2 = chatSnapshot1.data!.docs;
+
+                            if (chatDocs2.isEmpty) {
+                              return Center(
+                                child: Image.asset(
+                                  'assets/images/empty.jpeg',
+                                ),
+                              );
                             }
                             return Row(
                               children: [
@@ -125,16 +157,39 @@ class Chats extends StatelessWidget {
                                     Text(
                                       data['friendName'],
                                       style: MyTheme.heading2.copyWith(
-                                        fontSize: 16,
+                                        fontSize: 19,
                                       ),
                                     ),
                                     Text(
-                                      chatDocs[0]['text'] ?? '',
-                                      style: MyTheme.bodyText1,
+                                      chatDocs2[0]['text'] ?? '',
+                                      style: chatDocs2[0]['userId'] ==
+                                              auth.currentUser!.uid
+                                          ? MyTheme.bodyText1
+                                          : MyTheme.bodyText1.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black87,
+                                            ),
                                     ),
                                   ],
                                 ),
-                                // Text(DateTime.fromMillisecondsSinceEpoch(chatDocs[0]['createdAt'] * 1000).toString()),
+                                const Spacer(),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      DateFormat('hh:mm a').format((chatDocs2[0]
+                                              ['createdAt'] as Timestamp)
+                                          .toDate()),
+                                      style: chatDocs2[0]['userId'] ==
+                                              auth.currentUser!.uid
+                                          ? MyTheme.bodyText1
+                                          : MyTheme.bodyText1.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black87,
+                                            ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             );
                           }),
@@ -146,6 +201,66 @@ class Chats extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ChatsSkeleton extends StatelessWidget {
+  const ChatsSkeleton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 28,
+          backgroundColor: Colors.black.withOpacity(0.04),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Skeleton(
+              height: 25,
+              width: 200,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Skeleton(
+              height: 20,
+              width: 250,
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class Skeleton extends StatelessWidget {
+  const Skeleton({
+    this.height,
+    this.width,
+  });
+
+  final double? height;
+  final double? width;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.04),
+        borderRadius: BorderRadius.circular(16),
+      ),
     );
   }
 }
