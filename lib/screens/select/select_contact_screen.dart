@@ -18,7 +18,7 @@ class _SelectContactScreenState extends State<SelectContactScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Friend'),
+        title: const Text('My Friends'),
         elevation: 0,
         backgroundColor: MyTheme.kkPrimaryColor,
       ),
