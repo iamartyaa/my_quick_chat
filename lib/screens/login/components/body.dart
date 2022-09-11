@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quick_chat/main.dart';
 import '../../../components/already_account_check.dart';
 import '../../../components/rounded_button.dart';
 import '../../../components/text_field_container.dart';
@@ -41,10 +42,12 @@ class _BodyState extends State<Body> {
       setState(() {
         _isLoading = false;
       });
-      setState(() {
-        //
-      });
-      // Navigator.of(context).popAndPushNamed(HomeScreen.routeName);
+      Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const MyApp(),
+      ),
+    );
     } on PlatformException catch (err) {
       var message = 'An error occured, please check your credentials';
 
@@ -78,6 +81,7 @@ class _BodyState extends State<Body> {
       userEmail.toString().trim(),
       userPassword.toString().trim(),
     );
+    
     //once validated we can send to firebase
   }
 
@@ -160,8 +164,7 @@ class _BodyState extends State<Body> {
               AlreadyAccountCheck(
                 login: true,
                 press: () {
-                  Navigator.of(context)
-                      .popAndPushNamed(SignUpScreen.routeName);
+                  Navigator.of(context).popAndPushNamed(SignUpScreen.routeName);
                 },
               ),
             ],

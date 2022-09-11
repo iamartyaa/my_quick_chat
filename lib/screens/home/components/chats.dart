@@ -94,7 +94,7 @@ class Chats extends StatelessWidget {
                             if (chatSnapshot1.connectionState ==
                                 ConnectionState.waiting) {
                               return const Center(
-                                child: CircularProgressIndicator(),
+                                child: Text('Loading ...'),
                               );
                             }
                             

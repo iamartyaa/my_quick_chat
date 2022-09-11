@@ -54,8 +54,6 @@ class MyApp extends StatelessWidget {
         DropScreen.routeName: (context) => const DropScreen(),
         ProfileScreen.routeName: (context) => const ProfileScreen(),
         SelectContactScreen.routeName:(context) => const SelectContactScreen(),
-        // ChatRoom.routeName:(context) => Cha,
-        // ChatRoom.routeName:(context) => const ChatRoom(),
       },
     );
   }
