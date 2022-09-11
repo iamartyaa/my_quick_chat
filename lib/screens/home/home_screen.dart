@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quick_chat/app_theme.dart';
 import 'package:quick_chat/screens/home/components/search.dart';
+import 'package:quick_chat/screens/home/components/status.dart';
 import 'package:quick_chat/screens/profile/profile_screen.dart';
 import 'package:quick_chat/screens/select/select_contact_screen.dart';
 import 'components/chats.dart';
@@ -94,24 +95,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 controller: tabController,
                 children: [
                   Chats(),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 300,
-                        width: 300,
-                        child: Center(
-                          child: Image.asset(
-                            'assets/images/hourglass.jpg',
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Coming Soon ...',
-                        style: MyTheme.heading2,
-                      ),
-                    ],
-                  ),
+                  const Status(),
                   const SearchFriends(),
                 ],
               ),
@@ -141,3 +125,4 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 }
+
