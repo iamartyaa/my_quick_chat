@@ -1,16 +1,22 @@
-# my_quick_chat
+# QuickChat App
 
-A new Flutter project.
+A lightweight chatting application built with a cleaner UI to easily set up connections with Friends.
 
-## Getting Started
+## Key Points
 
-This project is a starting point for a Flutter application.
+- Built with **Flutter & Dart** 😃
+- Material UI Front-end for Android, Back-end with Firebase Auth, Firebase FireStore
+- Doped with features like Push Notifications, integrated Cloud Functions & Storage
 
-A few resources to get you started if this is your first Flutter project:
+## ScreenShots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="Screenshot_1646591809.png" height="300em" /> | <img src="Screenshot_1646591814.png" height="300em" /> |  <img src="Screenshot_1646591818.png" height="300em" /> |
+<img src="Screenshot_1646591832.png" height="300em" /> | <img src="Screenshot_1646591836.png" height="300em" />
+---
+<img src="Screenshot_1646591847.png" height="300em" /> | <img src="Screenshot_1646591856.png" height="300em" /> | <img src="Screenshot_1646591876.png" height="300em" /> |
+<img src="Screenshot_1646591902.png" height="300em" /> | <img src="Screenshot_1646591914.png" height="300em" />
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Created & Maintained by
+
+### **Amartya Yadav**
+---
