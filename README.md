@@ -10,11 +10,11 @@ A lightweight chatting application built with a cleaner UI to easily set up conn
 
 ## ScreenShots
 
-<img src="Screenshot_1646591809.png" height="300em" /> | <img src="Screenshot_1646591814.png" height="300em" /> |  <img src="Screenshot_1646591818.png" height="300em" /> |
-<img src="Screenshot_1646591832.png" height="300em" /> | <img src="Screenshot_1646591836.png" height="300em" />
+<img src="WhatsApp Image 2023-02-27 at 15.37.34.jpeg" height="300em" /> | <img src="WhatsApp Image 2023-02-27 at 15.37.34 (1).jpeg" height="300em" /> | <img src="WhatsApp Image 2023-02-27 at 15.37.34 (2).jpeg" height="300em" /> |  <img src="WhatsApp Image 2023-02-27 at 15.37.33.jpeg" height="300em" /> |
+ <img src="WhatsApp Image 2023-02-27 at 15.37.35 (1).jpeg" height="300em" />
 ---
-<img src="Screenshot_1646591847.png" height="300em" /> | <img src="Screenshot_1646591856.png" height="300em" /> | <img src="Screenshot_1646591876.png" height="300em" /> |
-<img src="Screenshot_1646591902.png" height="300em" /> | <img src="Screenshot_1646591914.png" height="300em" />
+<img src="WhatsApp Image 2023-02-27 at 15.37.35 (2).jpeg" height="300em" /> | <img src="WhatsApp Image 2023-02-27 at 15.37.35.jpeg" height="300em" /> | <img src="WhatsApp Image 2023-02-27 at 15.37.36 (1).jpeg" height="300em" /> |
+<img src="WhatsApp Image 2023-02-27 at 15.37.36.jpeg" height="300em" /> |
 
 ## Created & Maintained by
 
